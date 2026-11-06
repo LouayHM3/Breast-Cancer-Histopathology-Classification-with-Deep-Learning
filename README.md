@@ -62,21 +62,21 @@ must not be interpreted as a diagnosis.
 
 ```mermaid
 flowchart LR
-    A[Histopathology image] --> B[Imaging agent]
+    A[Histopathology image] --> B[Imaging validation]
     B --> C[Preprocessing]
     C --> D{Inference}
     D -->|ResNet-18 / CNN| E[Class probabilities]
     D -->|Grad-CAM| F[Salient regions]
-    E --> G[Verification agent]
+    E --> G[Verification]
     F --> G
-    G --> H[Safety agent]
+    G --> H[Safety gating]
     H --> I[Structured explanation]
     E --> J[ONNX export]
     J --> K[C++ OpenCV + ONNX Runtime]
     K --> L[HTTP API /v1/classify]
 ```
 
-### Separated agent responsibilities
+### Deterministic clinical-safety pipeline
 
 ```mermaid
 flowchart TB
@@ -85,11 +85,11 @@ flowchart TB
       META[Case metadata]
       DOC[Allowlisted documentation]
     end
-    IMG --> IA["🖼️ Imaging agent<br/>quality & preprocessing checks"]
-    IA --> INF["🧠 Inference agent<br/>classification / segmentation output"]
-    INF --> VER["📊 Verification agent<br/>metrics, calibration, consistency"]
-    VER --> SAFE["🛡️ Safety agent<br/>unsupported claims & review flags"]
-    META --> EXP["📝 Explanation agent<br/>structured report + evidence"]
+    IMG --> IA["🖼️ Imaging validation<br/>quality & preprocessing checks"]
+    IA --> INF["🧠 Inference<br/>classification / segmentation output"]
+    INF --> VER["📊 Verification<br/>metrics, calibration, consistency"]
+    VER --> SAFE["🛡️ Safety gating<br/>unsupported claims & review flags"]
+    META --> EXP["📝 Structured explanation<br/>report + evidence"]
     DOC --> EXP
     SAFE --> EXP
     EXP --> OUT["Auditable JSON summary<br/>never a diagnosis"]
@@ -112,7 +112,9 @@ flowchart LR
 
 ## 📈 Initial reference results
 
-The first notebook run achieved the following on the supplied test split:
+The first notebook run achieved the following on the supplied test split. These
+are baseline notebook results, not results from the newer patient-disjoint
+advanced pipeline:
 
 | Metric | Result |
 |---|---:|
@@ -143,7 +145,7 @@ oncology/
 ├── src/
 │   ├── advanced_pipeline.py          # metrics, Grad-CAM, calibration, ONNX
 │   ├── train_advanced.py             # grouped training + robustness artifacts
-│   └── multi_agent_pipeline.py       # imaging → inference → safety → report
+│   └── clinical_safety_pipeline.py   # validation → inference → safety → report
 ├── assistant/
 │   ├── explain_outputs.py             # constrained evidence summarizer
 │   └── medical_imaging_documentation.json
@@ -244,7 +246,8 @@ It reads only:
 It produces structured fields for model label, confidence, uncertainty,
 location when verified metadata exists, salient-region artifacts, limitations,
 and evidence sources. It never accesses the original image, the internet, or
-an unrestricted language model.
+an unrestricted language model. The pipeline is deliberately described as
+deterministic components rather than autonomous “agents”.
 
 ## 🧩 Segmentation status
 

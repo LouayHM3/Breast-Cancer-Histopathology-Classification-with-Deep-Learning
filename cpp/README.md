@@ -42,6 +42,9 @@ The benchmark performs warm-up iterations and reports mean, minimum, and
 maximum end-to-end latency plus input tensor memory. Run it on the target
 hardware and record results rather than assuming notebook performance.
 
+The loader uses `std::filesystem::path` so the ONNX Runtime model path follows
+the native Windows wide-character API when compiled on Windows.
+
 ## Segmentation
 
 The server currently supports classification because the available BreaKHis

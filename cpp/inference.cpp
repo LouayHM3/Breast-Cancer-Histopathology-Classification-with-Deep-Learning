@@ -4,6 +4,7 @@
 #include <array>
 #include <chrono>
 #include <cmath>
+#include <filesystem>
 #include <limits>
 #include <stdexcept>
 
@@ -29,7 +30,9 @@ OnnxClassifier::OnnxClassifier(const std::string& model_path, int image_size)
   }
   session_options_.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_ALL);
   session_options_.SetIntraOpNumThreads(1);
-  session_ = Ort::Session(env_, model_path.c_str(), session_options_);
+  const std::filesystem::path native_model_path(model_path);
+  session_ = Ort::Session(
+      env_, native_model_path.c_str(), session_options_);
 
   auto input_name = session_.GetInputNameAllocated(0, allocator_);
   auto output_name = session_.GetOutputNameAllocated(0, allocator_);

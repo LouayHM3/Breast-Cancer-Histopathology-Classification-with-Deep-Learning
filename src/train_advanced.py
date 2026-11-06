@@ -249,7 +249,6 @@ def main() -> None:
 
     model_path = args.output_dir / f"{args.model}.pt"
     torch.save({"model_state_dict": model.state_dict(), "classes": ["benign", "malignant"]}, model_path)
-    export_onnx(model.cpu(), args.output_dir / f"{args.model}.onnx")
     robustness = {}
     for variant in ["blur", "contrast", "brightness", "jpeg"]:
         corrupted_loader = DataLoader(
@@ -266,8 +265,13 @@ def main() -> None:
         json.dumps(robustness, indent=2), encoding="utf-8"
     )
     print(json.dumps(robustness, indent=2))
+    export_model = copy.deepcopy(model).cpu()
+    export_onnx(export_model, args.output_dir / f"{args.model}.onnx")
+    del export_model
     start = time.perf_counter()
-    _ = model(torch.randn(1, 3, 224, 224))
+    cpu_model = copy.deepcopy(model).cpu()
+    _ = cpu_model(torch.randn(1, 3, 224, 224))
+    del cpu_model
     print(f"CPU inference latency: {(time.perf_counter() - start) * 1000:.2f} ms")
 
 
