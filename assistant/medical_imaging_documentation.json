@@ -1,0 +1,17 @@
+{
+  "document_id": "research-prototype-medical-imaging-v1",
+  "title": "Research prototype interpretation guidance",
+  "version": "1.0",
+  "allowed_claims": {
+    "confidence": "Confidence is the highest probability reported by the model and is not a calibrated clinical probability.",
+    "uncertainty": "Uncertainty is represented here by one minus the highest model probability; it is not a validated clinical uncertainty estimate.",
+    "salient_regions": "A saliency or Grad-CAM artifact indicates image regions that influenced the model output; it is not a lesion boundary or segmentation mask.",
+    "location": "A location is reported only when supplied in verified metadata or by a verified segmentation artifact."
+  },
+  "limitations": [
+    "This system summarizes model artifacts and does not diagnose disease.",
+    "The classifier was developed as a research prototype and is not a medical device.",
+    "Model errors, dataset shift, annotation quality, and calibration limitations can affect the output.",
+    "A human-qualified reviewer must assess the original image and all relevant clinical information."
+  ]
+}

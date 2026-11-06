@@ -1,0 +1,8 @@
+{
+  "case_id": "case-001",
+  "lesion_location": {
+    "source": "verified_segmentation_artifact",
+    "coordinates": [112, 84, 326, 291],
+    "coordinate_system": "pixel_xyxy"
+  }
+}

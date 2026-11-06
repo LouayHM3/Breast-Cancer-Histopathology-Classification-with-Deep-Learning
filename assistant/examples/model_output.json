@@ -1,0 +1,9 @@
+{
+  "label": "malignant",
+  "confidence": 0.84,
+  "benign_probability": 0.16,
+  "malignant_probability": 0.84,
+  "salient_regions": [
+    "artifacts/gradcam_case_001.png"
+  ]
+}

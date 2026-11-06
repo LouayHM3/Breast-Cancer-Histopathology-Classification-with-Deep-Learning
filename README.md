@@ -13,6 +13,7 @@ This project explores the BreaKHis 400X histopathology image dataset and trains 
 - [`app.py`](./app.py): small Streamlit inference demonstration with a confidence flag and Grad-CAM.
 - [`cpp/README.md`](./cpp/README.md): native ONNX Runtime service and latency benchmark.
 - [`segmentation/README.md`](./segmentation/README.md): manual mask-annotation prototype and validation rules.
+- [`assistant/README.md`](./assistant/README.md): constrained, evidence-cited model-output summaries.
 - [`requirements.txt`](./requirements.txt): Python dependencies.
 
 ## Dataset
