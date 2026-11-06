@@ -4,6 +4,23 @@ The downloaded BreaKHis 400X data contains image-level `benign`/`malignant`
 labels, but no pixel-level lesion masks. This directory defines a small,
 manually annotated prototype without fabricating medical annotations.
 
+## Optional pseudo-mask demo
+
+For a technical visualization only, the repository includes a heuristic
+pseudo-mask generator. It uses brightness and color saturation; it does not
+identify tumor boundaries and must not be used for training, validation,
+clinical claims, or segmentation metrics.
+
+```powershell
+python segmentation\generate_pseudo_masks.py `
+  --images segmentation\images `
+  --masks artifacts\pseudo_masks `
+  --limit 20
+```
+
+The generated files are intentionally stored under `artifacts/`, which is
+ignored by Git. Keep them separate from reviewed masks under `segmentation/masks/`.
+
 ## Annotation workflow
 
 1. Select a small, representative sample from both classes.

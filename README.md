@@ -107,3 +107,7 @@ The repository includes a safe annotation workflow under [`segmentation/`](./seg
 It validates real manually drawn masks but does not generate synthetic medical
 ground truth. U-Net training can begin after a reviewed image/mask sample has
 been added.
+
+For a visualization-only experiment, `segmentation/generate_pseudo_masks.py`
+can create heuristic pseudo-masks. These are not annotations and must not be
+used to report segmentation quality or train a clinical model.
