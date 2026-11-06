@@ -8,6 +8,7 @@ This project explores the BreaKHis 400X histopathology image dataset and trains 
 
 - [`01_breakhis_exploration.ipynb`](./01_breakhis_exploration.ipynb): dataset structure, class distribution, image dimensions, and sample images.
 - [`02_breakhis_training.ipynb`](./02_breakhis_training.ipynb): preprocessing, augmentation, ResNet-18 transfer learning, validation, test metrics, ROC-AUC, confusion matrix, and model export.
+- [`src/advanced_pipeline.py`](./src/advanced_pipeline.py): patient-group checks, sensitivity/specificity, PR-AUC, calibration, Grad-CAM, robustness variants, and ONNX export helpers.
 - [`requirements.txt`](./requirements.txt): Python dependencies.
 
 ## Dataset
@@ -72,3 +73,16 @@ The confusion matrix included 86 malignant images classified as benign. This is 
 - Class-weighted loss addresses the benign/malignant imbalance.
 - The supplied train/test organization is used; patient-level leakage should be investigated before making stronger claims.
 - Results can vary with hardware, library versions, random state, and pretrained-weight availability.
+
+## Upgrade roadmap
+
+The advanced utilities are prepared for the next experiment:
+
+- Verify patient-level disjointness before training and report any overlap.
+- Compare the current ResNet-18 model with a small CNN baseline and an EfficientNet/ViT configuration.
+- Report sensitivity, specificity, F1, ROC-AUC, PR-AUC, calibration error, and the confusion matrix.
+- Generate Grad-CAM heatmaps and evaluate blur, contrast, brightness, and JPEG-compression robustness.
+- Export the selected model to ONNX and measure inference latency.
+- Add an upload-based inference application with a confidence threshold that flags uncertain cases for human review.
+
+BreaKHis 400X as downloaded here contains class labels but no lesion masks, so supervised U-Net/UNet++ segmentation cannot be implemented without a separate pixel-annotated dataset. Likewise, the current result is not externally validated and remains a research prototype, not a diagnostic medical device.
