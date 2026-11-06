@@ -14,6 +14,7 @@ This project explores the BreaKHis 400X histopathology image dataset and trains 
 - [`cpp/README.md`](./cpp/README.md): native ONNX Runtime service and latency benchmark.
 - [`segmentation/README.md`](./segmentation/README.md): manual mask-annotation prototype and validation rules.
 - [`assistant/README.md`](./assistant/README.md): constrained, evidence-cited model-output summaries.
+- [`src/multi_agent_pipeline.py`](./src/multi_agent_pipeline.py): separated imaging, inference, verification, explanation, and safety agents.
 - [`requirements.txt`](./requirements.txt): Python dependencies.
 
 ## Dataset
