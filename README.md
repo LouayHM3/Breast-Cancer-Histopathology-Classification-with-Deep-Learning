@@ -11,6 +11,7 @@ This project explores the BreaKHis 400X histopathology image dataset and trains 
 - [`src/advanced_pipeline.py`](./src/advanced_pipeline.py): patient-group checks, sensitivity/specificity, PR-AUC, calibration, Grad-CAM, robustness variants, and ONNX export helpers.
 - [`src/train_advanced.py`](./src/train_advanced.py): patient-grouped training, baseline-CNN/ResNet comparison, metrics, Grad-CAM, robustness artifacts, and ONNX export.
 - [`app.py`](./app.py): small Streamlit inference demonstration with a confidence flag and Grad-CAM.
+- [`cpp/README.md`](./cpp/README.md): native ONNX Runtime service and latency benchmark.
 - [`requirements.txt`](./requirements.txt): Python dependencies.
 
 ## Dataset
