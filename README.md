@@ -12,6 +12,7 @@ This project explores the BreaKHis 400X histopathology image dataset and trains 
 - [`src/train_advanced.py`](./src/train_advanced.py): patient-grouped training, baseline-CNN/ResNet comparison, metrics, Grad-CAM, robustness artifacts, and ONNX export.
 - [`app.py`](./app.py): small Streamlit inference demonstration with a confidence flag and Grad-CAM.
 - [`cpp/README.md`](./cpp/README.md): native ONNX Runtime service and latency benchmark.
+- [`segmentation/README.md`](./segmentation/README.md): manual mask-annotation prototype and validation rules.
 - [`requirements.txt`](./requirements.txt): Python dependencies.
 
 ## Dataset
@@ -99,3 +100,10 @@ The advanced utilities are prepared for the next experiment:
 - Add an upload-based inference application with a confidence threshold that flags uncertain cases for human review.
 
 BreaKHis 400X as downloaded here contains class labels but no lesion masks, so supervised U-Net/UNet++ segmentation cannot be implemented without a separate pixel-annotated dataset. Likewise, the current result is not externally validated and remains a research prototype, not a diagnostic medical device.
+
+## Manual segmentation prototype
+
+The repository includes a safe annotation workflow under [`segmentation/`](./segmentation/).
+It validates real manually drawn masks but does not generate synthetic medical
+ground truth. U-Net training can begin after a reviewed image/mask sample has
+been added.
