@@ -45,6 +45,19 @@
 
 ## 🖼️ Visual overview
 
+### Representative histopathology images
+
+The gallery below shows a small, representative sample from the downloaded
+BreaKHis 400X data: benign examples on the first row and malignant examples on
+the second row. These labels come from the dataset; visual appearance alone
+must not be interpreted as a diagnosis.
+
+<p align="center">
+  <img src="docs/tumor_gallery.png" alt="Representative benign and malignant histopathology images from BreaKHis 400X" width="100%">
+</p>
+
+<p align="center"><em>Representative dataset samples — benign (top) and malignant (bottom), for research visualization only.</em></p>
+
 ### System architecture
 
 ```mermaid
