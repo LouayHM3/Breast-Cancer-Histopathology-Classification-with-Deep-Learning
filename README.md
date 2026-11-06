@@ -9,6 +9,8 @@ This project explores the BreaKHis 400X histopathology image dataset and trains 
 - [`01_breakhis_exploration.ipynb`](./01_breakhis_exploration.ipynb): dataset structure, class distribution, image dimensions, and sample images.
 - [`02_breakhis_training.ipynb`](./02_breakhis_training.ipynb): preprocessing, augmentation, ResNet-18 transfer learning, validation, test metrics, ROC-AUC, confusion matrix, and model export.
 - [`src/advanced_pipeline.py`](./src/advanced_pipeline.py): patient-group checks, sensitivity/specificity, PR-AUC, calibration, Grad-CAM, robustness variants, and ONNX export helpers.
+- [`src/train_advanced.py`](./src/train_advanced.py): patient-grouped training, baseline-CNN/ResNet comparison, metrics, Grad-CAM, robustness artifacts, and ONNX export.
+- [`app.py`](./app.py): small Streamlit inference demonstration with a confidence flag and Grad-CAM.
 - [`requirements.txt`](./requirements.txt): Python dependencies.
 
 ## Dataset
@@ -55,6 +57,14 @@ Open the notebooks in VS Code or Google Colab, select the Python kernel, downloa
 
 The training notebook saves the trained weights as `breakhis_resnet18.pt`. Model weights are ignored by Git because they are generated artifacts.
 
+For the advanced pipeline:
+
+```powershell
+python src\train_advanced.py --dataset-root "C:\path\to\BreaKHis 400X" --model baseline
+python src\train_advanced.py --dataset-root "C:\path\to\BreaKHis 400X" --model resnet18
+streamlit run app.py
+```
+
 ## Reported evaluation
 
 The initial run achieved approximately:
@@ -73,6 +83,8 @@ The confusion matrix included 86 malignant images classified as benign. This is 
 - Class-weighted loss addresses the benign/malignant imbalance.
 - The supplied train/test organization is used; patient-level leakage should be investigated before making stronger claims.
 - Results can vary with hardware, library versions, random state, and pretrained-weight availability.
+- The advanced pipeline keeps patients disjoint between training and validation and refuses a train/test patient overlap.
+- Confidence is a review signal only; it is not a validated clinical probability.
 
 ## Upgrade roadmap
 
