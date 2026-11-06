@@ -24,15 +24,6 @@
 
 > ⚠️ **Medical safety notice:** This is an educational/research prototype, not a medical device and not a diagnostic system. It must not be used to make clinical decisions.
 
-## CV presentation
-
-**MedVision – Safety-Aware Breast Histopathology AI & C++ Inference**
-
-> Built a safety-aware medical-imaging research prototype combining
-> patient-disjoint deep-learning evaluation, Grad-CAM, calibration and
-> robustness testing with ONNX/C++ inference and deterministic evidence-based
-> reporting; designed explicit safety gates for uncertain and unsupported
-> outputs.
 
 ---
 
